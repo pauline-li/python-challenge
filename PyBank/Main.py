@@ -46,7 +46,6 @@ with open(bank_csv, 'r') as csvfile:
     print(f"----------------------------".center(24," ")) 
     print(f"Total Months: {len(increase_date)}")
     print(f"Total: ${str(total)}")
-    # print(f"Min Date: {increase_date[0]} Max Date: {increase_date[-1]}")
     print(f"Average Change: ${str(round((increase_list[list_length]-increase_list[0])/list_length, 2))}")
     print(f"Greatest Increase in Profits: {increase_date[incr_month]} (${greatest_inc})")
     print(f"Greatest Decrease in Profits: {increase_date[decr_month]} (${greatest_dec})")
