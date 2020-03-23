@@ -1,49 +1,48 @@
 import os
 import csv
-import datetime
+
 
 #C:\Users\pli.TELOS\Desktop\Bootcamp\VS Python Code\Lecture3
 
 bank_csv = os.path.join('../PyBank/budget_data.csv')
 
 row_count = 0
+total = 0
+
 
 with open(bank_csv, 'r') as csvfile:
     # Split the data on commas
     csvreader = csv.reader(csvfile, delimiter=',')
     header = next(csvreader)
-   
+     
+
+    FirstFlag = True   
+
+    #for x in bank_csv
+
     for bank_data in csvreader:
-        date = str(bank_data[0])
-        profitloss = int(bank_data[1])
-        row_count += 1 
+         date = str(bank_data[0])
+         profitloss = int(bank_data[1])
+         if FirstFlag == True:
+            min_date = date
+            min_profitloss = profitloss 
+            FirstFlag = False
+         total = total + profitloss
+         row_count += 1   #
 
-print(f"Financial Analysis".center(24," ")) 
-print(f"----------------------------".center(24," ")) 
-print(f"Total Months: {str(row_count)}")
-
-        
-
-
-   
-    # for bank_data in csvreader:
-    #     date = str(bank_data[0])
-    #     profitloss = int(bank_data[1])
-    #     if float(bank_data[1]) >= 569899:
-    #         print(f"date {date} amount {profitloss}")
-
-
-#     def average(numbers):  # no need to explicity define as list
-#     length = len(numbers)
-#     total = 0.0
-#     for number in numbers:
-#         total += number
-#     return total/length
+    max_date = date
+    max_profitloss = profitloss
+  
 
 
 
-# print(average([1,5,9]))
-# print(average(range(11)))
+ 
+    print(f"Financial Analysis") 
+    print(f"----------------------------".center(24," ")) 
+    print(f"Total Months: {str(row_count)}")
+    print(f"Total: ${str(total)}")
+    print(f"Min Date: {min_date} Max Date: {max_date}")
+    print(f"Average Change: ${str(round((max_profitloss-min_profitloss)/(row_count-1), 2))}")  
 
 
  
