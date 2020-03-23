@@ -34,8 +34,25 @@ with open(bank_csv, 'r') as csvfile:
          increase_date.append(date)
 
 
-    list_length = len(increase_date)-1
 
+    list_length = len(increase_date)-1
+    greatest_inc= increase_list[1]-increase_list[0] 
+    greatest_dec= increase_list[1]-increase_list[0] 
+
+    for i in range(1,list_length+1):
+        change=increase_list[i] - increase_list[i-1] 
+        if change > greatest_inc:
+            greatest_inc = change  
+        if change < greatest_dec:
+            greatest_dec = change  
+
+
+
+
+   
+    # for i in range(0,list_length+1): 
+    #     value = increase_date[i]
+    #     print(f"{value}")  
 
         
     print(f"Financial Analysis") 
@@ -44,8 +61,8 @@ with open(bank_csv, 'r') as csvfile:
     print(f"Total: ${str(total)}")
     print(f"Min Date: {increase_date[0]} Max Date: {increase_date[-1]}")
     print(f"Average Change: ${str(round((increase_list[list_length]-increase_list[0])/list_length, 2))}")
-    print(f"{increase_list[75]}")
-
+    print(f"{greatest_inc} greatest decrease {greatest_dec}")
+   
 
 
 csvwriter = output_path = os.path.join("../PyBank/PyBank_Output.csv")  # Write and create file in here
