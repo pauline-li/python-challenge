@@ -31,7 +31,7 @@ with open(poll_csv, 'r') as csvfile:
     print(f"----------------------------".center(24," "))
 
     for i in range(0,len(unique_candidate_name)):   
-        print(f"{unique_candidate_name[i]}: {(vote_sum[i]/sum(vote_sum))*100:.03f}% ({vote_sum[i]})  ") # print and format each vote percentage
+        print(f"{unique_candidate_name[i]}: {(vote_sum[i]/sum(vote_sum))*100:.03f}% ({vote_sum[i]})") # print and format each vote percentage
 
     for i in range(0,len(unique_candidate_name)-1):  
         if vote_sum[i+1] > vote_sum[i]:
@@ -43,7 +43,28 @@ with open(poll_csv, 'r') as csvfile:
 
 
    
-       
+
+
+
+ 
+csv_writer = output_path = os.path.join("../PyPoll/PyPoll_Output.csv")  # Write and create file in here
+
+with open(csv_writer, 'w') as csvfile:
+
+    # Initialize csv.writer
+    csv_writer = csv.writer(csvfile)
+   
+    csv_writer.writerow([f"Election Results"])
+    csv_writer.writerow([f"----------------------------".center(24," ")])
+    csv_writer.writerow([f"Total Votes: {sum(vote_sum)})"])
+    csv_writer.writerow([f"----------------------------".center(24," ")])
+    for i in range(0,len(unique_candidate_name)):  
+        csv_writer.writerow([f"{unique_candidate_name[i]}: {(vote_sum[i]/sum(vote_sum))*100:.03f}% ({vote_sum[i]})"])
+    csv_writer.writerow([f"----------------------------".center(24," ")])
+    csv_writer.writerow([f"Winner: {unique_candidate_name[winner_index]}"])
+    csv_writer.writerow([f"----------------------------".center(24," ")])
+
+
 
 # Election Results
 # -------------------------
